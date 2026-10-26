@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#090909">
+<title>MONÉ FOOD</title>
+<style>
+:root{--bg:#090909;--panel:#151515;--panel2:#1e1b15;--gold:#d6b56d;--muted:#a6a6a6;--line:#35312a;--green:#a8d9ae;--red:#f08b82}
+*{box-sizing:border-box}body{margin:0 auto;max-width:760px;background:linear-gradient(155deg,#15130f,#090909 45%);color:#f6f2e9;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;padding:env(safe-area-inset-top) 15px calc(24px + env(safe-area-inset-bottom))}
+header{display:flex;justify-content:space-between;align-items:center;padding:25px 2px 20px}.brand{font-weight:850;font-size:27px;letter-spacing:.16em;color:var(--gold)}.sub{font-size:10px;letter-spacing:.2em;color:var(--muted);margin-top:3px}.badge{border:1px solid #5d4c2c;border-radius:30px;padding:7px 10px;color:var(--gold);font-size:11px}
+.daynav{display:flex;gap:10px;align-items:center;justify-content:space-between;background:#151515;border:1px solid var(--line);border-radius:14px;padding:10px}.daynav button{background:#242016;color:var(--gold);border:1px solid #51442b;border-radius:9px;padding:8px 12px;font-size:17px}.daynav input{background:transparent;border:0;color:#f4f0e6;font:inherit;text-align:center;max-width:160px}
+.hero{margin-top:14px;border:1px solid #5b4a2b;background:linear-gradient(130deg,#272013,#14120e 65%);border-radius:18px;padding:18px}.eyebrow{font-size:11px;color:var(--muted);letter-spacing:.1em}.big{font-size:31px;font-weight:800;color:var(--gold);margin:5px 0 14px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.stat{background:#ffffff09;border-radius:12px;padding:11px 9px}.stat small{display:block;color:var(--muted);font-size:10px;margin-bottom:5px}.stat strong{font-size:17px}.stat span{display:block;color:var(--muted);font-size:10px;margin-top:3px}
+.actions{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:13px}.btn{border:1px solid #66532e;background:#211b10;color:var(--gold);border-radius:12px;padding:13px 10px;font-size:13px;font-weight:750;cursor:pointer}.btn.secondary{border-color:var(--line);background:#171717;color:#f3eee4}.btn:disabled{opacity:.5}
+h2{font-size:16px;margin:24px 0 12px}.mealgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.mealstat{border:1px solid var(--line);background:var(--panel);border-radius:13px;padding:12px 10px}.mealstat .icon{font-size:18px}.mealstat small{display:block;color:var(--muted);font-size:11px;margin:5px 0}.mealstat strong{font-size:15px}.mealstat.done{border-color:#806b3e;background:#211c12}.mealstat.done small{color:var(--gold)}
+.card{border:1px solid var(--line);background:var(--panel);border-radius:15px;padding:14px;margin-bottom:10px}.field{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}.field label{font-size:11px;color:var(--muted)}input,select,textarea{width:100%;background:#0d0d0d;color:#f5f0e6;border:1px solid #3b3b3b;border-radius:10px;padding:11px;font:inherit;min-width:0}input[type=file]{font-size:12px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.full{grid-column:1/-1}.note{color:var(--muted);font-size:11px;line-height:1.65}.formactions{display:grid;grid-template-columns:1fr 1fr;gap:9px}.list{display:flex;flex-direction:column;gap:9px}.mealrow{display:flex;gap:11px;padding:13px;background:#151515;border:1px solid #2e2e2e;border-radius:13px}.mealicon{width:43px;height:43px;border-radius:12px;background:#282114;display:grid;place-items:center;font-size:21px;flex-shrink:0}.mealmain{flex:1;min-width:0}.mealname{font-weight:700;font-size:14px;overflow-wrap:anywhere}.mealmeta{color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5}.mealprice{font-weight:750;color:var(--gold);white-space:nowrap}.del{border:0;background:none;color:#888;font-size:18px;padding:0 2px;align-self:flex-start}.empty{text-align:center;color:var(--muted);font-size:13px;border:1px dashed #383838;border-radius:12px;padding:24px}.sectionhead{display:flex;justify-content:space-between;align-items:center}.sectionhead h2{margin-bottom:12px}.tiny{font-size:11px;color:var(--muted)}.budgetline{height:7px;background:#333;border-radius:99px;overflow:hidden;margin-top:10px}.budgetfill{height:100%;width:0;background:var(--gold);border-radius:99px;transition:width .2s}.budgettext{display:flex;justify-content:space-between;color:var(--muted);font-size:11px;margin-top:7px}.warn{color:#f0c877}.danger{color:var(--red)}footer{text-align:center;font-size:10px;color:#777;line-height:1.7;padding:22px 4px}
+
+.smallnav{background:#211b10;border:1px solid #51442b;border-radius:8px;color:var(--gold);padding:5px 10px;font-size:16px}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:12px}
+.calendar-dow{text-align:center;font-size:10px;color:var(--muted);padding:4px 0}
+.calday{min-height:54px;border:1px solid #303030;border-radius:9px;background:#101010;color:#eee;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:12px;cursor:pointer;padding:4px 1px}
+.calday.muted{opacity:.25}.calday.today{border-color:#b99852}.calday.selected{background:#302615;border-color:var(--gold);color:var(--gold);font-weight:800}.calday .dotmark{font-size:8px;color:var(--gold);height:8px}.calday .costmark{font-size:8px;color:var(--muted);white-space:nowrap}
+.weekstats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px;margin:8px 0 14px}.weekstat{background:#211c13;border-radius:10px;padding:10px 8px}.weekstat small{font-size:10px;color:var(--muted);display:block;margin-bottom:5px}.weekstat strong{font-size:15px;color:var(--gold)}
+.week-days{display:flex;flex-direction:column;gap:8px}.weekday{display:grid;grid-template-columns:52px 1fr 82px;align-items:center;gap:8px;cursor:pointer;border:1px solid #2c2c2c;border-radius:10px;padding:9px;background:#101010}.weekday.active{border-color:#8b703b;background:#201a10}.weekday-label{font-size:11px;color:var(--muted)}.bartrack{height:8px;border-radius:99px;background:#303030;overflow:hidden}.barfill{height:100%;background:var(--gold);border-radius:99px}.weekday-cost{text-align:right;font-size:12px;font-weight:650;white-space:nowrap}
+
+@media(max-width:380px){body{padding-inline:11px}.big{font-size:27px}.stat strong{font-size:14px}.mealgrid{gap:5px}.mealstat{padding:10px 7px}}
+</style>
+
+<link rel="manifest" href="./manifest.webmanifest">
+<meta name="theme-color" content="#0b0b0b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="MONÉ FOOD">
+<link rel="apple-touch-icon" href="./icon-192.png">
+
+</head>
+<body>
+<header><div><div class="brand">MONÉ</div><div class="sub">FOOD & FOOD BUDGET</div></div><span class="badge">LOCAL ONLY</span></header>
+<div class="daynav"><button id="prevDay" aria-label="前の日">‹</button><input id="selectedDate" type="date" aria-label="記録する日付"><button id="nextDay" aria-label="次の日">›</button></div>
+<div class="actions" style="margin-top:10px">
+ <button class="btn secondary" id="showCalendar">▦ カレンダー</button>
+ <button class="btn secondary" id="showWeek">▤ 週間データ</button>
+</div>
+<section class="card" id="calendarCard" hidden style="margin-top:10px">
+ <div class="sectionhead"><h2 style="margin-top:0">食事カレンダー</h2><div style="display:flex;gap:6px;align-items:center"><button class="smallnav" id="prevMonth">‹</button><strong id="calendarMonth" style="font-size:13px;color:var(--gold)"></strong><button class="smallnav" id="nextMonth">›</button></div></div>
+ <div class="calendar-grid" id="calendarGrid"></div>
+ <p class="note" style="margin-bottom:0">日付をタップすると、その日の食事記録と食費に切り替わるよ。●は記録あり。</p>
+</section>
+<section class="card" id="weekCard" hidden style="margin-top:10px">
+ <div class="sectionhead"><h2 style="margin-top:0">週間データ</h2><span class="tiny" id="weekRange"></span></div>
+ <div class="weekstats">
+  <div class="weekstat"><small>週の食費合計</small><strong id="weekCost">¥0</strong></div>
+  <div class="weekstat"><small>食事記録数</small><strong id="weekMeals">0件</strong></div>
+  <div class="weekstat"><small>1日平均食費</small><strong id="weekAverage">¥0</strong></div>
+ </div>
+ <div id="weekDays" class="week-days"></div>
+ <p class="note" style="margin-bottom:0">週は月曜日〜日曜日で集計するよ。棒グラフは日ごとの食費。日付をタップすると、その日の記録を見られるよ。</p>
+</section>
+
+<section class="hero">
+ <div class="eyebrow">今日の食費</div><div id="dayCost" class="big">¥0</div>
+ <div class="stats">
+  <div class="stat"><small>食事の記録</small><strong id="mealCount">0食</strong><span id="mealTypes">まだ記録なし</span></div>
+  <div class="stat"><small>食費の予算</small><strong id="budgetRemaining">未設定</strong><span id="budgetCaption">1日の予算</span></div>
+  <div class="stat"><small>月の食費</small><strong id="monthCost">¥0</strong><span id="monthCaption">今月の合計</span></div>
+ </div>
+ <div class="budgetline"><div id="budgetFill" class="budgetfill"></div></div>
+ <div id="budgetText" class="budgettext"><span>1日の予算</span><span>予算未設定</span></div>
+</section>
+<div class="actions"><button class="btn" id="addMeal">＋ 食事を記録</button><button class="btn secondary" id="receiptBtn">▣ レシートから入力</button></div>
+
+<section id="mealFormCard" class="card" hidden>
+ <h2 id="formHeading" style="margin-top:0">食事を記録</h2>
+ <form id="mealForm">
+  <div class="grid">
+   <div class="field"><label for="mealType">食事</label><select id="mealType"><option value="朝食">朝食</option><option value="昼食">昼食</option><option value="夕食">夕食</option><option value="間食">間食</option><option value="夜食">夜食</option><option value="飲み物">飲み物</option></select></div>
+   <div class="field"><label for="mealTime">食べた時間</label><input id="mealTime" type="time" required></div>
+   <div class="field full"><label for="foodName">食べたもの</label><input id="foodName" required maxlength="160" placeholder="例：おにぎり2個、サラダチキン"></div>
+   <div class="field"><label for="mealPrice">かかった金額（円）</label><input id="mealPrice" type="number" min="0" step="1" required placeholder="650"></div>
+   <div class="field"><label for="mealCategory">食事の種類</label><select id="mealCategory"><option>自炊</option><option>コンビニ</option><option>外食</option><option>スーパー</option><option>デリバリー</option><option>もらいもの</option><option>その他</option></select></div>
+   <div class="field full"><label for="mealMemo">メモ（任意）</label><textarea id="mealMemo" rows="2" maxlength="500" placeholder="量、たんぱく質、店名など"></textarea></div>
+  </div>
+  <div class="formactions"><button type="submit" class="btn">保存する</button><button type="button" id="cancelMeal" class="btn secondary">キャンセル</button></div>
+ </form>
+</section>
+
+<section id="receiptCard" class="card" hidden>
+ <h2 style="margin-top:0">レシートから食費を入力</h2>
+ <p class="note">レシートの写真をAIに送信して、店名・日付・合計金額を読み取るよ。レシートは購入記録であって「食べたもの」とは限らないので、読み取り後に食べた内容を入力してね。写真は外部AIサービスへ送信される。</p>
+ <div class="field"><label for="receiptPhoto">レシート写真</label><input id="receiptPhoto" type="file" accept="image/*" capture="environment"></div>
+ <img id="receiptPreview" alt="レシートのプレビュー" style="display:none;width:100%;max-height:200px;object-fit:contain;border-radius:10px;background:#090909;margin:5px 0 12px">
+ <button class="btn" id="scanReceipt" style="width:100%" disabled>AIで読み取る</button>
+ <div id="receiptStatus" class="note" style="margin-top:10px;white-space:pre-wrap"></div>
+ <div class="field" style="margin-top:12px"><label for="workerUrl">AI接続先URL（初回設定）</label><input id="workerUrl" type="url" placeholder="https://your-worker.workers.dev"></div>
+ <p class="note">AI接続先の準備はREADMEの手順を見てね。秘密鍵をこの画面に入力しないでね。</p>
+</section>
+
+<section class="card" style="margin-top:14px">
+ <div class="sectionhead"><h2 style="margin-top:0">食費予算</h2><span class="tiny">1日 / 1か月</span></div>
+ <div class="grid">
+  <div class="field"><label for="dailyBudget">1日の予算（円）</label><input id="dailyBudget" type="number" min="0" step="100" placeholder="1500"></div>
+  <div class="field"><label for="monthlyBudget">1か月の予算（円）</label><input id="monthlyBudget" type="number" min="0" step="1000" placeholder="45000"></div>
+ </div>
+ <button class="btn secondary" id="saveBudget" style="width:100%">予算を保存</button>
+ <p class="note" style="margin-bottom:0">予算はいつでも変更できるよ。</p>
+</section>
+
+<div class="sectionhead"><h2>この日の食事</h2><span id="listCount" class="tiny">0件</span></div>
+<div id="mealList" class="list"></div>
+
+<section class="card" style="margin-top:20px">
+ <div class="sectionhead"><h2 style="margin-top:0">今月の食費</h2><span id="monthlyBudgetLabel" class="tiny">予算未設定</span></div>
+ <div id="monthTotalLarge" class="big" style="font-size:27px;margin-bottom:4px">¥0</div>
+ <div id="monthBudgetText" class="budgettext"><span>月間予算</span><span>未設定</span></div>
+ <div class="budgetline"><div id="monthBudgetFill" class="budgetfill"></div></div>
+ <p class="note" style="margin-bottom:0">この月の記録済み食事・食費の合計。レシートの合計金額を食事に入力した場合、個々の食事金額と重複しないようにしてね。</p>
+</section>
+
+
+<footer>MONÉ FOOD · 食べたものも、食費も、ひとつに。<br>記録はこのブラウザ内に保存されます。定期的にバックアップしてね。</footer>
+<script>
+const $=id=>document.getElementById(id);
+const DATA_KEY="mone.food.entries.v1",SET_KEY="mone.food.settings.v1";
+let meals=load(DATA_KEY,[]),settings=load(SET_KEY,{dailyBudget:0,monthlyBudget:0,workerUrl:""}),editId=null,receiptData=null;
+const now=new Date();const dateString=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+$("selectedDate").value=dateString(now);$("workerUrl").value=settings.workerUrl||"";$("dailyBudget").value=settings.dailyBudget||"";$("monthlyBudget").value=settings.monthlyBudget||"";
+function load(k,f){try{return JSON.parse(localStorage.getItem(k)||"null")??f}catch{return f}}
+function persist(){localStorage.setItem(DATA_KEY,JSON.stringify(meals));render()}
+function yen(n){return new Intl.NumberFormat("ja-JP",{style:"currency",currency:"JPY",maximumFractionDigits:0}).format(Number(n)||0)}
+function dayMeals(){return meals.filter(m=>m.date===$("selectedDate").value)}
+function monthMeals(){return meals.filter(m=>m.date?.slice(0,7)===$("selectedDate").value.slice(0,7))}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function iconFor(t){return {"朝食":"☀️","昼食":"🍱","夕食":"🍽️","間食":"🍪","夜食":"🌙","飲み物":"🥤"}[t]||"🍴"}
+
+let calendarMonth = ($("selectedDate").value || dateString(new Date())).slice(0,7);
+function dateFromString(s){return new Date(s+"T12:00:00")}
+function monthKey(d){return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}`}
+function renderCalendar(){
+ const [yy,mm]=calendarMonth.split("-").map(Number),first=new Date(yy,mm-1,1,12),start=(first.getDay()+6)%7;
+ $("calendarMonth").textContent=`${yy}年${mm}月`;
+ const grid=$("calendarGrid");grid.innerHTML="";
+ ["月","火","水","木","金","土","日"].forEach(d=>{const el=document.createElement("div");el.className="calendar-dow";el.textContent=d;grid.append(el)});
+ const daysInMonth=new Date(yy,mm,0).getDate();
+ const selected=$("selectedDate").value;
+ for(let i=0;i<42;i++){
+  const dayNum=i-start+1, d=new Date(yy,mm-1,dayNum,12), ds=dateString(d), inMonth=dayNum>=1&&dayNum<=daysInMonth;
+  const records=meals.filter(m=>m.date===ds), cost=records.reduce((s,m)=>s+Number(m.price||0),0);
+  const b=document.createElement("button");b.className="calday"+(!inMonth?" muted":"")+(ds===selected?" selected":"")+(ds===dateString(new Date())?" today":"");
+  b.innerHTML=`<span>${d.getDate()}</span><span class="dotmark">${records.length?"●":""}</span><span class="costmark">${cost?yen(cost):""}</span>`;
+  b.disabled=!inMonth;b.onclick=()=>{$("selectedDate").value=ds;calendarMonth=ds.slice(0,7);render();};grid.append(b);
+ }
+}
+function getWeekDates(dateStr){
+ const d=dateFromString(dateStr);const day=(d.getDay()+6)%7;d.setDate(d.getDate()-day);
+ return Array.from({length:7},(_,i)=>{const x=new Date(d);x.setDate(d.getDate()+i);return dateString(x)});
+}
+function renderWeek(){
+ const dates=getWeekDates($("selectedDate").value),records=meals.filter(m=>dates.includes(m.date));
+ const total=records.reduce((s,m)=>s+Number(m.price||0),0),average=Math.round(total/7);
+ $("weekRange").textContent=`${dates[0].slice(5).replace("-","/")} – ${dates[6].slice(5).replace("-","/")}`;
+ $("weekCost").textContent=yen(total);$("weekMeals").textContent=records.length+"件";$("weekAverage").textContent=yen(average);
+ const costs=dates.map(d=>meals.filter(m=>m.date===d).reduce((s,m)=>s+Number(m.price||0),0)),max=Math.max(1,...costs);
+ const names=["月","火","水","木","金","土","日"],container=$("weekDays");container.innerHTML="";
+ dates.forEach((d,i)=>{
+  const row=document.createElement("div");row.className="weekday"+(d===$("selectedDate").value?" active":"");
+  const label=document.createElement("div");label.className="weekday-label";label.textContent=names[i]+" "+Number(d.slice(-2))+"日";
+  const track=document.createElement("div");track.className="bartrack";const fill=document.createElement("div");fill.className="barfill";fill.style.width=(costs[i]/max*100)+"%";track.append(fill);
+  const cost=document.createElement("div");cost.className="weekday-cost";cost.textContent=yen(costs[i]);
+  row.append(label,track,cost);row.onclick=()=>{$("selectedDate").value=d;render()};container.append(row);
+ });
+}
+$("showCalendar").onclick=()=>{$("calendarCard").hidden=!$("calendarCard").hidden;if(!$("calendarCard").hidden){calendarMonth=$("selectedDate").value.slice(0,7);renderCalendar()}};
+$("showWeek").onclick=()=>{$("weekCard").hidden=!$("weekCard").hidden;if(!$("weekCard").hidden)renderWeek()};
+$("prevMonth").onclick=()=>{const d=dateFromString(calendarMonth+"-01");d.setMonth(d.getMonth()-1);calendarMonth=monthKey(d);renderCalendar()};
+$("nextMonth").onclick=()=>{const d=dateFromString(calendarMonth+"-01");d.setMonth(d.getMonth()+1);calendarMonth=monthKey(d);renderCalendar()};
+
+function render(){
+ const day=dayMeals(),month=monthMeals(),dayTotal=day.reduce((s,m)=>s+Number(m.price||0),0),monthTotal=month.reduce((s,m)=>s+Number(m.price||0),0);
+ $("dayCost").textContent=yen(dayTotal);$("mealCount").textContent=day.length+"件";
+ const types=["朝食","昼食","夕食"].filter(t=>day.some(m=>m.type===t));
+ $("mealTypes").textContent=types.length?`${types.length}/3食（朝・昼・夕）`:"食事記録なし";
+ $("monthCost").textContent=yen(monthTotal);$("monthCaption").textContent=$("selectedDate").value.slice(0,7)+"の合計";
+ const db=Number(settings.dailyBudget)||0,mb=Number(settings.monthlyBudget)||0;
+ $("budgetRemaining").textContent=db?yen(db-dayTotal):"未設定";$("budgetCaption").textContent=db?(dayTotal>db?"予算オーバー":"残り予算"):"1日の予算";
+ $("budgetRemaining").className=db&&dayTotal>db?"danger":"";
+ $("budgetFill").style.width=db?Math.min(100,dayTotal/db*100)+"%":"0%";
+ $("budgetText").innerHTML=`<span>1日の予算 ${db?yen(db):"未設定"}</span><span>${db?(dayTotal>db?"超過 "+yen(dayTotal-db):"残り "+yen(db-dayTotal)):"予算を設定してね"}</span>`;
+ $("monthTotalLarge").textContent=yen(monthTotal);$("monthlyBudgetLabel").textContent=mb?`予算 ${yen(mb)}`:"予算未設定";
+ $("monthBudgetText").innerHTML=`<span>月間予算 ${mb?yen(mb):"未設定"}</span><span>${mb?(monthTotal>mb?"超過 "+yen(monthTotal-mb):"残り "+yen(mb-monthTotal)):"予算を設定してね"}</span>`;
+ $("monthBudgetFill").style.width=mb?Math.min(100,monthTotal/mb*100)+"%":"0%";
+ $("listCount").textContent=day.length+"件";const list=$("mealList");list.innerHTML="";
+ if(!day.length){list.innerHTML='<div class="empty">この日の記録はまだないよ。<br>「食事を記録」から追加してみて。</div>';if(!$("calendarCard").hidden)renderCalendar();if(!$("weekCard").hidden)renderWeek();return}
+ day.sort((a,b)=>(a.time||"").localeCompare(b.time||"")).forEach(m=>{
+  const row=document.createElement("div");row.className="mealrow";
+  const ico=document.createElement("div");ico.className="mealicon";ico.textContent=iconFor(m.type);
+  const main=document.createElement("div");main.className="mealmain";
+  const name=document.createElement("div");name.className="mealname";name.textContent=m.food;
+  const meta=document.createElement("div");meta.className="mealmeta";meta.textContent=`${m.time} · ${m.type} · ${m.source||"その他"}${m.memo?" · "+m.memo:""}`;
+  const price=document.createElement("div");price.className="mealprice";price.textContent=yen(m.price);
+  const del=document.createElement("button");del.className="del";del.textContent="×";del.title="削除";del.onclick=()=>{if(confirm("この食事記録を削除する？")){meals=meals.filter(x=>x.id!==m.id);persist()}};
+  main.append(name,meta);row.append(ico,main,price,del);list.append(row);
+ });
+}
+function panel(which){$("mealFormCard").hidden=which!=="form";$("receiptCard").hidden=which!=="receipt"}
+function currentTime(){const d=new Date();return `${String(d.getHours()).padStart(2,"0")}:${String(d.getMinutes()).padStart(2,"0")}`}
+$("addMeal").onclick=()=>{editId=null;$("mealForm").reset();$("mealTime").value=currentTime();$("formHeading").textContent="食事を記録";panel("form")};
+$("cancelMeal").onclick=()=>panel("");
+$("receiptBtn").onclick=()=>panel("receipt");
+$("selectedDate").onchange=render;
+function shiftDate(days){const d=new Date($("selectedDate").value+"T12:00:00");d.setDate(d.getDate()+days);$("selectedDate").value=dateString(d);render()}
+$("prevDay").onclick=()=>shiftDate(-1);$("nextDay").onclick=()=>shiftDate(1);
+$("mealForm").onsubmit=e=>{e.preventDefault();const m={id:editId||crypto.randomUUID(),date:$("selectedDate").value,type:$("mealType").value,time:$("mealTime").value,food:$("foodName").value.trim(),price:Math.round(Number($("mealPrice").value)||0),source:$("mealCategory").value,memo:$("mealMemo").value.trim(),createdAt:Date.now()};if(!m.food){alert("食べたものを入力してね");return}if(editId)meals=meals.map(x=>x.id===editId?m:x);else meals.push(m);persist();$("mealForm").reset();panel("")};
+$("saveBudget").onclick=()=>{settings.dailyBudget=Math.max(0,Number($("dailyBudget").value)||0);settings.monthlyBudget=Math.max(0,Number($("monthlyBudget").value)||0);settings.workerUrl=$("workerUrl").value.trim();localStorage.setItem(SET_KEY,JSON.stringify(settings));render();alert("予算を保存したよ！")};
+$("workerUrl").onchange=()=>{settings.workerUrl=$("workerUrl").value.trim();localStorage.setItem(SET_KEY,JSON.stringify(settings))};
+function compressImage(file){return new Promise((resolve,reject)=>{const fr=new FileReader();fr.onerror=reject;fr.onload=()=>{const im=new Image();im.onerror=reject;im.onload=()=>{const scale=Math.min(1,1800/Math.max(im.width,im.height)),c=document.createElement("canvas");c.width=Math.round(im.width*scale);c.height=Math.round(im.height*scale);c.getContext("2d").drawImage(im,0,0,c.width,c.height);resolve(c.toDataURL("image/jpeg",.78))};im.src=fr.result};fr.readAsDataURL(file)})}
+$("receiptPhoto").onchange=async e=>{receiptData=null;$("scanReceipt").disabled=true;$("receiptPreview").style.display="none";const f=e.target.files?.[0];if(!f)return;try{receiptData=await compressImage(f);$("receiptPreview").src=receiptData;$("receiptPreview").style.display="block";$("scanReceipt").disabled=false;$("receiptStatus").textContent="写真を選んだよ。AI読み取りを押してね。"}catch{$("receiptStatus").textContent="画像を読み込めなかったよ。"}};
+$("scanReceipt").onclick=async()=>{const url=$("workerUrl").value.trim();settings.workerUrl=url;localStorage.setItem(SET_KEY,JSON.stringify(settings));if(!url){$("receiptStatus").textContent="先にAI接続先URLを設定してね。";return}if(!receiptData)return;$("scanReceipt").disabled=true;$("receiptStatus").textContent="AIが読み取り中…";try{const res=await fetch(url,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({image:receiptData})});const data=await res.json();if(!res.ok)throw Error(data.error||"読み取りエラー");const r=data.receipt||data;const date=/^\d{4}-\d{2}-\d{2}$/.test(r.date||"")?r.date:$("selectedDate").value;const amount=Number(r.amount)||0;const shop=r.shop||"レシート";$("selectedDate").value=date;$("mealForm").reset();$("mealTime").value=currentTime();$("mealType").value="間食";$("foodName").value=shop+"（レシート要確認）";$("mealPrice").value=amount;$("mealCategory").value="その他";$("mealMemo").value="店名："+shop+"。レシートの合計金額。食べた内容に編集してから保存。";$("formHeading").textContent="レシート読み取り結果を編集";$("receiptStatus").textContent="読み取れたよ。これは購入金額なので、食べた内容を入力して確認してね。";panel("form");render()}catch(err){$("receiptStatus").textContent="エラー："+err.message+"\n接続先URLと通信環境を確認してね。"}finally{$("scanReceipt").disabled=false}};
+render();
+</script>
+
+<script>
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", () => {
+    navigator.serviceWorker.register("./sw.js").catch((err) => console.warn("Offline setup unavailable:", err));
+  });
+}
+</script>
+
+</body></html>
